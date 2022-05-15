@@ -198,9 +198,10 @@ export default {
     }
   },
   methods: {
+    //分页查询操作。关键！！
     getList(page, params) {
       this.listLoading = true;
-      fetchList(
+      fetchList(//这是封装的一个查询多条数据的Ajax
         Object.assign(
           {
             current: page.currentPage,
@@ -209,6 +210,7 @@ export default {
           params
         )
       ).then(response => {
+        //接受到返回数据后渲染页面
         this.list = response.data.data.records;
         console.table(this.list)
         this.page.total = response.data.data.total;
@@ -229,11 +231,11 @@ export default {
     currentChange(current) {
       this.page.currentPage = current;
     },
-    handleFilter(param, done) {
+    handleFilter(param, done) {//调用这个函数的时候并没有看到有传入参数
       this.query = param;
       this.page.currentPage = 1;
       this.getList(this.page, param);
-      done();
+      done();//可能由于getList是异步的，所以这里加了done()。虽然我还不知道具体语句是什么
     },
     handleRefreshChange() {
       this.getList(this.page);
