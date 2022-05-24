@@ -98,11 +98,15 @@ export default {
     },
     open(item) {
       if (this.screen <= 1) this.$store.commit("SET_COLLAPSE");
-      this.$router.$avueRouter.group = item.group;
+      console.log('open,item.group=>',item.group)
+      console.log('open,item[this.labelKey]=>',item[this.labelKey])
+      console.log('open,item[this.pathKey]=>',item[this.pathKey])
+      console.log('open,item.query=>',item.query)
+      this.$router.$avueRouter.group = item.group;//$avueRouter这是什么？？
       this.$router.push({
         path: this.$router.$avueRouter.getPath({
           name: item[this.labelKey],
-          src: item[this.pathKey]
+          src: item[this.pathKey]//路由跳转规则：view包下的各种index的路径。
         }),
         query: item.query
       }).catch(() => {});

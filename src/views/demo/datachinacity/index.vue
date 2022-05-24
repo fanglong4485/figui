@@ -1,242 +1,146 @@
+<!--
+  -    Copyright (c) 2018-2025, lengleng All rights reserved.
+  -
+  - Redistribution and use in source and binary forms, with or without
+  - modification, are permitted provided that the following conditions are met:
+  -
+  - Redistributions of source code must retain the above copyright notice,
+  - this list of conditions and the following disclaimer.
+  - Redistributions in binary form must reproduce the above copyright
+  - notice, this list of conditions and the following disclaimer in the
+  - documentation and/or other materials provided with the distribution.
+  - Neither the name of the pig4cloud.com developer nor the names of its
+  - contributors may be used to endorse or promote products derived from
+  - this software without specific prior written permission.
+  - Author: lengleng (wangiegie@gmail.com)
+  -->
 <template>
-  <div class="mod-config">
-    <basic-container>
-      <el-form :inline="true" :model="dataForm" @keyup.enter.native="getDataList()">
-        <el-form-item>
-          <el-button v-if="permissions.demo_datachinacity_add" icon="el-icon-plus" type="primary" @click="addOrUpdateHandle()">新增</el-button>
-        </el-form-item>
-        <el-input v-model="input" placeholder="请输入城市名" style="width: 100px"></el-input>
-        <el-button @click="handleSearch">按名字查询</el-button>
-      </el-form>
+    <div class="execution">
 
-      <div class="avue-crud">
-        <el-table
-                :data="dataList"
-                border
-                v-loading="dataListLoading">
-            <el-table-column
-                    prop="id"
-                    header-align="center"
-                    align="center"
-                    label="id">
-            </el-table-column>
-            <el-table-column
-                    prop="pro"
-                    header-align="center"
-                    align="center"
-                    label="pro">
-            </el-table-column>
-            <el-table-column
-                    prop="city"
-                    header-align="center"
-                    align="center"
-                    label="city">
-            </el-table-column>
-            <el-table-column
-                    prop="nativeRelative"
-                    header-align="center"
-                    align="center"
-                    label="nativeRelative">
-            </el-table-column>
-            <el-table-column
-                    prop="asymptomatic"
-                    header-align="center"
-                    align="center"
-                    label="asymptomatic">
-            </el-table-column>
-            <el-table-column
-                    prop="asymptomaticRelative"
-                    header-align="center"
-                    align="center"
-                    label="asymptomaticRelative">
-            </el-table-column>
-            <el-table-column
-                    prop="confirmed"
-                    header-align="center"
-                    align="center"
-                    label="confirmed">
-            </el-table-column>
-            <el-table-column
-                    prop="confirmedRelative"
-                    header-align="center"
-                    align="center"
-                    label="confirmedRelative">
-            </el-table-column>
-            <el-table-column
-                    prop="died"
-                    header-align="center"
-                    align="center"
-                    label="died">
-            </el-table-column>
-            <el-table-column
-                    prop="diedRelative"
-                    header-align="center"
-                    align="center"
-                    label="diedRelative">
-            </el-table-column>
-            <el-table-column
-                    prop="curConfirm"
-                    header-align="center"
-                    align="center"
-                    label="curConfirm">
-            </el-table-column>
-            <el-table-column
-                    prop="crued"
-                    header-align="center"
-                    align="center"
-                    label="crued">
-            </el-table-column>
-            <el-table-column
-                    prop="cruedRelative"
-                    header-align="center"
-                    align="center"
-                    label="cruedRelative">
-            </el-table-column>
-            <el-table-column
-                    prop="cityCode"
-                    header-align="center"
-                    align="center"
-                    label="cityCode">
-            </el-table-column>
-            <el-table-column
-                    prop="administrativeCode"
-                    header-align="center"
-                    align="center"
-                    label="administrativeCode">
-            </el-table-column>
-            <el-table-column
-                    prop="mark"
-                    header-align="center"
-                    align="center"
-                    label="mark">
-            </el-table-column>
-            <el-table-column
-                    prop="updateTime"
-                    header-align="center"
-                    align="center"
-                    label="updateTime">
-            </el-table-column>
-            <el-table-column
-                    prop="createTime"
-                    header-align="center"
-                    align="center"
-                    label="createTime">
-            </el-table-column>
-          <el-table-column
-                  header-align="center"
-                  align="center"
-                  label="操作">
-            <template slot-scope="scope">
-              <el-button v-if="permissions.demo_datachinacity_edit" type="text" size="small" icon="el-icon-edit" @click="addOrUpdateHandle(scope.row.id)">修改</el-button>
-              <el-button v-if="permissions.demo_datachinacity_del" type="text" size="small" icon="el-icon-delete" @click="deleteHandle(scope.row.id)">删除</el-button>
-            </template>
-          </el-table-column>
-        </el-table>
-      </div>
-
-      <div class="avue-crud__pagination">
-        <el-pagination
-                @size-change="sizeChangeHandle"
-                @current-change="currentChangeHandle"
-                :current-page="pageIndex"
-                :page-sizes="[10, 20, 50, 100]"
-                :page-size="pageSize"
-                :total="totalPage"
-                background
-                layout="total, sizes, prev, pager, next, jumper">
-        </el-pagination>
-      </div>
-      <!-- 弹窗, 新增 / 修改 -->
-      <table-form v-if="addOrUpdateVisible" ref="addOrUpdate" @refreshDataList="getDataList"></table-form>
-    </basic-container>
-  </div>
+        <basic-container>
+          <el-button @click="mapTest" >第一个地图</el-button>
+            <avue-crud ref="crud"
+                       :page.sync="page"
+                       :data="tableData"
+                       :permission="permissionList"
+                       :table-loading="tableLoading"
+                       :option="tableOption"
+                       @on-load="getList"
+                       @search-change="searchChange"
+                       @refresh-change="refreshChange"
+                       @size-change="sizeChange"
+                       @current-change="currentChange"
+                       @row-update="handleUpdate"
+                       @row-save="handleSave"
+                       @row-del="rowDel">
+            </avue-crud>
+        </basic-container>
+    </div>
 </template>
 
 <script>
-  import {fetchList, delObj} from '@/api/datachinacity'
-  import TableForm from './datachinacity-form'
-  import {mapGetters} from 'vuex'
-  export default {
-    data () {
-      return {
-        input: '',
-        dataForm: {
-          key: ''
+    import {fetchList, getObj, addObj, putObj, delObj} from '@/api/datachinacity'
+    import {tableOption} from '@/const/crud/datachinacity'
+    import {mapGetters} from 'vuex'
+
+    export default {
+        name: 'datachinacity',
+        data() {
+            return {
+                searchForm: {},
+                tableData: [],
+                page: {
+                    total: 0, // 总页数
+                    currentPage: 1, // 当前页数
+                    pageSize: 20 // 每页显示多少条
+                },
+                tableLoading: false,
+                tableOption: tableOption
+            }
         },
-        dataList: [],
-        pageIndex: 1,
-        pageSize: 10,
-        totalPage: 0,
-        dataListLoading: false,
-        addOrUpdateVisible: false
-      }
-    },
-    components: {
-      TableForm
-    },
-    created () {
-      this.getDataList()
-    },
-    computed: {
-      ...mapGetters(['permissions'])
-    },
-    methods: {
-      // 获取数据列表
-      getDataList () {
-        this.dataListLoading = true
-        fetchList(Object.assign({
-          current: this.pageIndex,
-          size: this.pageSize
-        })).then(response => {
-          this.dataList = response.data.data.records
-          this.totalPage = response.data.data.total
-        })
-        this.dataListLoading = false
-      },
-      // 每页数
-      sizeChangeHandle (val) {
-        this.pageSize = val
-        this.pageIndex = 1
-        this.getDataList()
-      },
-      // 当前页
-      currentChangeHandle (val) {
-        this.pageIndex = val
-        this.getDataList()
-      },
-      // 新增 / 修改
-      addOrUpdateHandle (id) {
-        this.addOrUpdateVisible = true
-        this.$nextTick(() => {
-          this.$refs.addOrUpdate.init(id)
-        })
-      },
-      // 删除
-      deleteHandle (id) {
-        this.$confirm('是否确认删除ID为' + id, '提示', {
-          confirmButtonText: '确定',
-          cancelButtonText: '取消',
-          type: 'warning'
-        }).then(function () {
-          return delObj(id)
-        }).then(data => {
-          this.$message.success('删除成功')
-          this.getDataList()
-        }).catch(() => {})
-      },
-      handleSearch(){
-        //以这个Vue的input的值作为参数，发送Ajax请求
-        this.dataListLoading = true
-        fetchList(Object.assign({//这是一个从api导入的Ajax请求
-          current: this.pageIndex,
-          size: this.pageSize,
-          city: this.input
-        })).then(response => {
-          this.dataList = response.data.data.records
-          this.totalPage = response.data.data.total
-        })
-        this.dataListLoading = false
-      }
+        computed: {
+            ...mapGetters(['permissions']),
+            permissionList() {
+                return {
+                    addBtn: this.vaildData(this.permissions.demo_datachinacity_add, false),
+                    delBtn: this.vaildData(this.permissions.demo_datachinacity_del, false),
+                    editBtn: this.vaildData(this.permissions.demo_datachinacity_edit, false)
+                };
+            }
+        },
+        methods: {
+            mapTest(){
+            // debugger
+            // this.$router.push({
+            //   path: this.$router.$avueRouter.getPath({
+            //     name: '地图测试1',
+            //     src: '/demo/maptest/index'//路由跳转规则：view包下的各种index的路径。
+            //   }),
+            //   query: null
+            // }).catch(() => {});
+            this.$router.push({
+              path: '/demo/maptest/index',
+              query: undefined
+            }).catch(() => {});
+          },
+            getList(page, params) {
+                this.tableLoading = true
+                fetchList(Object.assign({
+                    current: page.currentPage,
+                    size: page.pageSize
+                }, params, this.searchForm )).then(response => {
+                    this.tableData = response.data.data.records
+                    this.page.total = response.data.data.total
+                    this.tableLoading = false
+                }).catch(() => {
+                    this.tableLoading=false
+                })
+            },
+            rowDel: function (row, index) {
+                this.$confirm('是否确认删除ID为' + row.id, '提示', {
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消',
+                    type: 'warning'
+                }).then(function () {
+                    return delObj(row.id)
+                }).then(data => {
+                    this.$message.success('删除成功')
+                    this.getList(this.page)
+                })
+            },
+            handleUpdate: function (row, index, done,loading) {
+                putObj(row).then(data => {
+                    this.$message.success('修改成功')
+                    done()
+                    this.getList(this.page)
+                }).catch(() => {
+                    loading();
+                });
+            },
+            handleSave: function (row, done,loading) {
+                addObj(row).then(data => {
+                    this.$message.success('添加成功')
+                    done()
+                    this.getList(this.page)
+                }).catch(() => {
+                    loading();
+                });
+            },
+            sizeChange(pageSize){
+                this.page.pageSize = pageSize
+            },
+            currentChange(current){
+                this.page.currentPage = current
+            },
+            searchChange(form, done) {
+                this.searchForm = form
+                this.page.currentPage = 1
+                this.getList(this.page, form)
+                done()
+            },
+            refreshChange() {
+                this.getList(this.page)
+            }
+        }
     }
-  }
 </script>

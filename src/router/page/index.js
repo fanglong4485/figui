@@ -10,6 +10,17 @@ export default [{
             isAuth: false
         }
     },
+  {
+    path: '/demo/maptest/index',
+    name: '第一个地图',
+    component: () =>
+      import ( /* webpackChunkName: "page" */ '@/views/demo/maptest/index'),
+    meta: {
+      keepAlive: true,
+      isTab: false,
+      isAuth: false
+    }
+  },
     {
         path: '/404',
         component: () =>
