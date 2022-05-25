@@ -25,7 +25,9 @@ import basicContainer from "./components/basic-container/main";
 import DictResolver from '@/components/DictResolver'
 // 字典标签组件
 import DictTag from '@/components/DictTag'
-
+//引入Echarts
+import * as echarts from 'echarts'
+Vue.prototype.$echarts = echarts
 // 挂载常用全局方法，import 引入
 Vue.prototype.validatenull = validatenull;
 Vue.prototype.downBlobFile = downBlobFile;
