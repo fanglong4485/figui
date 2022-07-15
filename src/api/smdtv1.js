@@ -19,7 +19,7 @@ import request from '@/router/axios'
 
 export function fetchList(query) {
   return request({
-    url: '/mjmap/datachinacity/page',
+    url: '/mjmap/smdtv1/page',
     method: 'get',
     params: query
   })
@@ -27,7 +27,7 @@ export function fetchList(query) {
 
 export function addObj(obj) {
   return request({
-    url: '/mjmap/datachinacity',
+    url: '/mjmap/smdtv1',
     method: 'post',
     data: obj
   })
@@ -35,21 +35,21 @@ export function addObj(obj) {
 
 export function getObj(id) {
   return request({
-    url: '/mjmap/datachinacity/' + id,
+    url: '/mjmap/smdtv1/' + id,
     method: 'get'
   })
 }
 
 export function delObj(id) {
   return request({
-    url: '/mjmap/datachinacity/' + id,
+    url: '/mjmap/smdtv1/' + id,
     method: 'delete'
   })
 }
 
 export function putObj(obj) {
   return request({
-    url: '/mjmap/datachinacity',
+    url: '/mjmap/smdtv1',
     method: 'put',
     data: obj
   })

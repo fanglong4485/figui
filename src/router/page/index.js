@@ -11,10 +11,10 @@ export default [{
         }
     },
   {
-    path: '/demo/maptest/index',
+    path: '/mjmap/maptest/index',
     name: '第一个地图',
     component: () =>
-      import ( /* webpackChunkName: "page" */ '@/views/demo/maptest/index'),
+      import ( /* webpackChunkName: "page" */ '@/views/mjmap/maptest/index'),
     meta: {
       keepAlive: true,
       isTab: false,

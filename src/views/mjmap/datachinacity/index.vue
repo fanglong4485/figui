@@ -52,7 +52,7 @@
                 page: {
                     total: 0, // 总页数
                     currentPage: 1, // 当前页数
-                    pageSize: 20 // 每页显示多少条
+                    pageSize: 10 // 每页显示多少条
                 },
                 tableLoading: false,
                 tableOption: tableOption
@@ -62,9 +62,9 @@
             ...mapGetters(['permissions']),
             permissionList() {
                 return {
-                    addBtn: this.vaildData(this.permissions.demo_datachinacity_add, false),
-                    delBtn: this.vaildData(this.permissions.demo_datachinacity_del, false),
-                    editBtn: this.vaildData(this.permissions.demo_datachinacity_edit, false)
+                    addBtn: this.vaildData(this.permissions.mjmap_datachinacity_add, false),
+                    delBtn: this.vaildData(this.permissions.mjmap_datachinacity_del, false),
+                    editBtn: this.vaildData(this.permissions.mjmap_datachinacity_edit, false)
                 };
             }
         },
@@ -74,12 +74,12 @@
             // this.$router.push({
             //   path: this.$router.$avueRouter.getPath({
             //     name: '地图测试1',
-            //     src: '/demo/maptest/index'//路由跳转规则：view包下的各种index的路径。
+            //     src: '/mjmap/maptest/index'//路由跳转规则：view包下的各种index的路径。
             //   }),
             //   query: null
             // }).catch(() => {});
             this.$router.push({
-              path: '/demo/maptest/index',
+              path: '/mjmap/maptest/index',
               query: undefined
             }).catch(() => {});
           },
@@ -109,6 +109,8 @@
                 })
             },
             handleUpdate: function (row, index, done,loading) {
+              console.log("正在更新第"+row+"行！！")
+              debugger
                 putObj(row).then(data => {
                     this.$message.success('修改成功')
                     done()
