@@ -130,10 +130,10 @@ export default {
       showLegendSymbol: true,
       tooltip: {
         trigger: 'item',
-        textStyle: {
+        // textStyle: {
           fontSize: 14,
           lineHeight: 22,
-        },
+        // },
         position: point => {
           // 固定在顶部
           return [point[0] + 50, point[1] - 20];
@@ -150,9 +150,9 @@ export default {
         // max: getMax(newData),
         max: 2500,
         text: ['危险', '安全'],
-        textStyle: {
+        // textStyle: {
           color: 'rgb(255,255,255)',
-        },
+        // },
         // color: 'rgb(255,255,255)',
         realtime: false,
         calculable: true,
@@ -210,18 +210,18 @@ export default {
               shadowColor: '#00f2fc',
             },
           },
-          label: {
+          axisLabel: {
             formatter: params => `${params.name}`,
             show: true,
             position: 'insideRight',
-            textStyle: {
+            // textStyle: {
               fontSize: 14,
               color: '#efefef',
-            },
+            // },
             emphasis: {
-              textStyle: {
+              // textStyle: {
                 color: '#fff',
-              },
+              // },
             },
           },
           data: cdata,//赋值的关键代码

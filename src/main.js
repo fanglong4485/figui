@@ -27,6 +27,25 @@ import DictResolver from '@/components/DictResolver'
 import DictTag from '@/components/DictTag'
 //引入Echarts
 import * as echarts from 'echarts'
+// import { GlobeComponent } from 'echarts-gl/components';
+// import { CanvasRenderer } from 'echarts/renderers';
+// import jquery from 'jquery'
+// echarts.use([GlobeComponent, CanvasRenderer])
+//dataV引入
+import dataV from '@jiaminghi/data-view'
+// 引入全局css，可能跟原有的全局样式冲突。
+// import './assets/scss/style.scss';
+// 按需引入vue-awesome图标
+import Icon from 'vue-awesome/components/Icon';
+import 'vue-awesome/icons/chart-bar.js';
+import 'vue-awesome/icons/chart-area.js';
+import 'vue-awesome/icons/chart-pie.js';
+import 'vue-awesome/icons/chart-line.js';
+import 'vue-awesome/icons/align-left.js';
+// 全局注册 dataV相关。
+Vue.component('icon', Icon);
+Vue.use(dataV);
+Vue.config.productionTip = false
 Vue.prototype.$echarts = echarts
 // 挂载常用全局方法，import 引入
 Vue.prototype.validatenull = validatenull;

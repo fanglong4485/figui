@@ -21,6 +21,17 @@ export default [{
       isAuth: false
     }
   },
+  {
+    path: '/bigscreen/index',
+    name: 'index',
+    component: () =>
+      import ( /* webpackChunkName: "page" */ '@/views/bigscreen/index'),
+    meta: {
+      keepAlive: true,
+      isTab: false,
+      isAuth: false
+    }
+  },
     {
         path: '/404',
         component: () =>
