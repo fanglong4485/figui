@@ -1,10 +1,10 @@
 <template>
   <div>
-    <!-- 年度开工率 -->
+    <!-- 疫情数据统计图 -->
     <Echart
       :options="options"
       id="bottomLeftChart"
-      height="480px"
+      height="300px"
       width="100%"
     ></Echart>
   </div>
@@ -30,7 +30,11 @@ export default {
   watch: {
     cdata: {
       handler (newData) {
+        // console.log('bottomLeftChart newData=>',newData)
         this.options = {
+          title: {
+            text: "",
+          },
           tooltip: {
             trigger: "axis",
             backgroundColor: "rgba(255,255,255,0.1)",
@@ -43,7 +47,7 @@ export default {
             }
           },
           legend: {
-            data: ["已贯通", "计划贯通", "贯通率"],
+            data: ["新增", "累计", "治愈"],
             textStyle: {
               color: "#B4B4B4"
             },
@@ -92,7 +96,7 @@ export default {
           ],
           series: [
             {
-              name: "贯通率",
+              name: "治愈",
               type: "line",
               smooth: true,
               showAllSymbol: true,
@@ -107,7 +111,7 @@ export default {
               data: newData.rateData
             },
             {
-              name: "已贯通",
+              name: "新增",
               type: "bar",
               barWidth: 10,
               itemStyle: {
@@ -122,7 +126,7 @@ export default {
               data: newData.barData
             },
             {
-              name: "计划贯通",
+              name: "累计",
               type: "bar",
               barGap: "-100%",
               barWidth: 10,

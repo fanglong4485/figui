@@ -1,35 +1,56 @@
 <template>
-  <div id="centerLeft1">
+  <div id="DangerLevelChart" >
     <div class="bg-color-black">
       <div class="d-flex pt-2 pl-2">
         <span>
           <icon name="chart-pie" class="text-icon"></icon>
         </span>
-        <div class="d-flex">
-          <span class="fs-xl text mx-2">地图数据</span>
+        <div style="display: flex">
+          <span class="fs-xl text mx-2">危险等级</span>
           <dv-decoration-1 class="dv-dec-1" />
         </div>
       </div>
       <div class="d-flex jc-center">
-        <CenterLeft2Chart />
+        <DangerLevelChart :is-history="isHistoryObj"/>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import CenterLeft2Chart from "@/components/echart/centerLeft/centerLeft2Chart";
+import DangerLevelChart from "@/components/echart/center/dangerLevel";
 export default {
   components: {
-    CenterLeft2Chart
+    DangerLevelChart
+  },
+  data(){
+    return{
+      isHistoryObj: {},
+    }
+  },
+  props: {
+    isHistory: {
+      type: Object,
+      default: () => {},
+    },
+  },
+  watch: {
+    isHistory: {
+      handler(newData){
+        // console.log("isHistory属性改变了！=》",newData)
+        this.isHistoryObj = newData
+      },
+      immediate: true,
+      deep: true,
+    }
   },
 };
 </script>
 
 <style lang="scss" scoped>
-#centerLeft1 {
+#DangerLevelChart {
   $box-width: 300px;
-  $box-height: 410px;
+  $box-height: 600px;
   padding: 16px;
   height: $box-height;
   min-width: $box-width;

@@ -56,29 +56,33 @@
         <div class="body-box">
           <!-- 第三行数据 -->
           <div class="content-box">
+            <!-- 这里的content-box是表格布局样式，当地图的高度变长了，整行表格的高度也会变 -->
             <div>
-              <dv-border-box-12>
-                <centerLeft1 />
+              <!--数据概览-->
+              <dv-border-box-12 style="width: 385px">
+                <center />
               </dv-border-box-12>
             </div>
             <div>
-              <dv-border-box-12>
-                <centerLeft2 />
-              </dv-border-box-12>
-            </div>
-            <!-- 中间 -->
-            <div>
-              <center />
-            </div>
-            <!-- 中间 -->
-            <div>
-              <centerRight2 />
-            </div>
-            <div>
+              <!--雷达图、分析报告-->
               <dv-border-box-13>
-                <centerRight1 />
+                <radar />
               </dv-border-box-13>
             </div>
+            <div>
+              <!--危险等级-->
+              <dv-border-box-12 >
+                  <dangerLevel />
+              </dv-border-box-12>
+            </div>
+            <div>
+              <!--现有确诊-->
+              <dv-border-box-13>
+                <fuzhou />
+              </dv-border-box-13>
+            </div>
+
+
           </div>
 
           <!-- 第四行数据 -->
@@ -99,10 +103,9 @@
 <script>
 import drawMixin from "@/util/drawMixin";
 import { formatTime } from '@/util'
-import centerLeft1 from './centerLeft1'
-import centerLeft2 from './centerLeft2'
-import centerRight1 from './centerRight1'
-import centerRight2 from './centerRight2'
+import radar from './radar'
+import fuzhou from "./fuzhou"
+import dangerLevel from './DangerLevel'
 import center from './center'
 import bottomLeft from './bottomLeft'
 import bottomRight from './bottomRight'
@@ -122,11 +125,10 @@ export default {
     }
   },
   components: {
-    centerLeft1,
-    centerLeft2,
-    centerRight1,
-    centerRight2,
+    radar,
+    dangerLevel,
     center,
+    fuzhou,
     bottomLeft,
     bottomRight
   },

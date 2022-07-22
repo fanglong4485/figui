@@ -6,14 +6,16 @@
 
 <script>
 import Chart from './chart.vue';
+
 export default {
   data () {
     return {
+      isHistoryObj: {},
       cdata: [
         {
-          // 名字需要与 “common/map/fujian.js” 地图数据文件里面定义的一一对应，不能是 “福州” 或者 “闽” 之类的缩写
+          // 名字需要与 “common/map/maps.js” 地图数据文件里面定义的一一对应，不能是 “福州” 或者 “闽” 之类的缩写
           name: '福州市',
-          value: 10,
+          value: 999,
           elseData:{
             // 这里放置地图 tooltip 里想显示的数据
           }
@@ -53,10 +55,26 @@ export default {
       ]
     }
   },
+  props: {
+    isHistory: {
+      type: Object,
+      default: () => {},
+    },
+  },
+  watch: {
+    isHistory: {
+      handler(newData){
+
+      },
+      immediate: true,
+      deep: true,
+    }
+  },
   components: {
     Chart,
   },
   mounted () {
+
   },
   methods: {
   }

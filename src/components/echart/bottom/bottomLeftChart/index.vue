@@ -10,6 +10,7 @@ export default {
   data () {
     return {
       cdata: {
+        //地区
         category: [
           "市区",
           "万州",
@@ -45,6 +46,7 @@ export default {
           "川东",
           "检修"
         ],
+        //新增
         lineData: [
           18092,
           20728,
@@ -80,6 +82,7 @@ export default {
           49521,
           32808
         ],
+        //累计
         barData: [
           4600,
           5000,
@@ -115,24 +118,29 @@ export default {
           25250,
           7500
         ],
+        //治愈
         rateData: []
-      }
+      },
     };
   },
   components: {
     Chart,
   },
   mounted () {
-    this.setData();
+    // this.setData();
+    this.load()
   },
   methods: {
-    // 根据自己的业务情况修改
-    setData () {
-      for (let i = 0; i < this.cdata.barData.length -1; i++) {
-        let rate = this.cdata.barData[i] / this.cdata.lineData[i];
-        this.cdata.rateData.push(rate.toFixed(2));
-      }
+    load(){
     },
+
+    // 根据自己的业务情况修改
+    // setData () {
+    //   for (let i = 0; i < this.cdata.barData.length -1; i++) {
+    //     let rate = this.cdata.barData[i] / this.cdata.lineData[i];
+    //     this.cdata.rateData.push(rate.toFixed(2));
+    //   }
+    // },
   }
 };
 </script>
