@@ -2,7 +2,7 @@
   <div>
     <Echart
         :options="options"
-        id="centreLeft1Chart"
+        id="bottomRightChart"
         height="300px"
         width="100%"
     ></Echart>
@@ -119,10 +119,6 @@ export default {
           toolbox: {
             show: true,
             feature: {
-              // dataZoom: {
-              //   yAxisIndex: 'none'
-              // },
-              // dataView: { readOnly: false },
               magicType: {type: ['line', 'bar']},
               restore: {},
               saveAsImage: {},
@@ -145,87 +141,21 @@ export default {
               name: '福州',
               type: 'line',
               data: newData.福州,
-              // markPoint: {
-              //   data: [{name: '周最低', value: -2, xAxis: 1, yAxis: -1.5}]
-              // },
-              // markLine: {
-              //   data: [
-              //     {type: 'average', name: 'Avg'},
-              //     [
-              //       {
-              //         symbol: 'none',
-              //         x: '90%',
-              //         yAxis: 'max'
-              //       },
-              //       {
-              //         symbol: 'circle',
-              //         label: {
-              //           position: 'start',
-              //           formatter: 'Max'
-              //         },
-              //         type: 'max',
-              //         name: '最高点'
-              //       }
-              //     ]
-              //   ]
-              // }
             },
             {
               name: '厦门',
               type: 'line',
               data: newData.厦门,
-              // markPoint: {
-              //   data: [{name: '周最低', value: -2, xAxis: 1, yAxis: -1.5}]
-              // },
-              // markLine: {
-              //   data: [
-              //     {type: 'average', name: 'Avg'},
-              //     [
-              //       {
-              //         symbol: 'none',
-              //         x: '90%',
-              //         yAxis: 'max'
-              //       },
-              //       {
-              //         symbol: 'circle',
-              //         label: {
-              //           position: 'start',
-              //           formatter: 'Max'
-              //         },
-              //         type: 'max',
-              //         name: '最高点'
-              //       }
-              //     ]
-              //   ]
-              // }
             },
             {
               name: '泉州',
               type: 'line',
               data: newData.泉州,
-              // markPoint: {
-              //   data: [
-              //     {type: 'max', name: 'Max'},
-              //     {type: 'min', name: 'Min'}
-              //   ]
-              // },
-              // markLine: {
-              //   data: [{type: 'average', name: 'Avg'}]
-              // }
             },
             {
               name: '漳州',
               type: 'line',
               data: newData.漳州,
-              // markPoint: {
-              //   data: [
-              //     {type: 'max', name: 'Max'},
-              //     {type: 'min', name: 'Min'}
-              //   ]
-              // },
-              // markLine: {
-              //   data: [{type: 'average', name: 'Avg'}]
-              // }
             },
             {
               name: '莆田',

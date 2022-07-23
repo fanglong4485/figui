@@ -57,9 +57,9 @@ export default {
       isHistoryObj: {},
       titleItem: [
         {
-          title: "1",
+          title: "标题一",
           number: {
-            number: [1],
+            number: [100],
             toFixed: 1,
             textAlign: 'left',
             content: '{nt}',
@@ -69,9 +69,9 @@ export default {
           }
         },
         {
-          title: "2",
+          title: "标题二",
           number: {
-            number: [2],
+            number: [221],
             toFixed: 1,
             textAlign: 'left',
             content: '{nt}',
@@ -81,9 +81,9 @@ export default {
           }
         },
         {
-          title: "3",
+          title: "标题三",
           number: {
-            number: [3],
+            number: [65],
             toFixed: 1,
             textAlign: 'left',
             content: '{nt}',
@@ -93,9 +93,9 @@ export default {
           }
         },
         {
-          title: "4",
+          title: "标题四",
           number: {
-            number: [4],
+            number: [445],
             toFixed: 1,
             textAlign: 'left',
             content: '{nt}',
@@ -105,7 +105,7 @@ export default {
           }
         },
         {
-          title: "5",
+          title: "标题五",
           number: {
             number: [5],
             toFixed: 1,
@@ -117,9 +117,9 @@ export default {
           }
         },
         {
-          title: "6",
+          title: "标题六",
           number: {
-            number: [6],
+            number: [645],
             toFixed: 1,
             textAlign: 'left',
             content: '{nt}',
@@ -129,9 +129,9 @@ export default {
           }
         },
         {
-          title: "7",
+          title: "标题七",
           number: {
-            number: [7],
+            number: [547],
             toFixed: 1,
             textAlign: 'left',
             content: '{nt}',
@@ -141,9 +141,9 @@ export default {
           }
         },
         {
-          title: "8",
+          title: "标题八",
           number: {
-            number: [8],
+            number: [847],
             toFixed: 1,
             textAlign: 'left',
             content: '{nt}',
@@ -154,6 +154,48 @@ export default {
         },
       ],
       ranking: {
+        data: [
+          {
+            name: '周口',
+            value: 55
+          },
+          {
+            name: '南阳',
+            value: 120
+          },
+          {
+            name: '西峡',
+            value: 78
+          },
+          {
+            name: '驻马店',
+            value: 66
+          },
+          {
+            name: '新乡',
+            value: 80
+          },
+          {
+            name: '新乡2',
+            value: 80
+          },
+          {
+            name: '新乡3',
+            value: 80
+          },
+          {
+            name: '新乡4',
+            value: 80
+          },
+          {
+            name: '新乡5',
+            value: 80
+          },
+          {
+            name: '新乡6',
+            value: 80
+          }
+        ],
         carousel: 'single',
         unit: '人'
       },
@@ -183,17 +225,6 @@ export default {
           }
         })
       })
-    },
-    // 设置排名数据,这里设置新值有点不一样，具体看datav文档
-    setRankingData (rankingData) {
-      if(JSON.stringify(rankingData) !== JSON.stringify(this.ranking.data)){
-        this.ranking = {
-          data: rankingData ,
-          carousel: 'single',
-          unit: '人'
-        }
-      }
-
     },
   }
 }
