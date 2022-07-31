@@ -18,7 +18,7 @@
     <div class="execution">
 
         <basic-container>
-          <el-button @click="mapTest" >第一个地图</el-button>
+
             <avue-crud ref="crud"
                        :page.sync="page"
                        :data="tableData"
@@ -69,20 +69,6 @@
             }
         },
         methods: {
-            mapTest(){
-            // debugger
-            // this.$router.push({
-            //   path: this.$router.$avueRouter.getPath({
-            //     name: '地图测试1',
-            //     src: '/mjmap/maptest/index'//路由跳转规则：view包下的各种index的路径。
-            //   }),
-            //   query: null
-            // }).catch(() => {});
-            this.$router.push({
-              path: '/mjmap/maptest/index',
-              query: undefined
-            }).catch(() => {});
-          },
             getList(page, params) {
                 this.tableLoading = true
                 fetchList(Object.assign({
