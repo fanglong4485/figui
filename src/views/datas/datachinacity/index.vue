@@ -25,8 +25,10 @@
                        :permission="permissionList"
                        :table-loading="tableLoading"
                        :option="tableOption"
+                       :search.sync="search"
                        @on-load="getList"
                        @search-change="searchChange"
+                       @search-reset="resetSearch"
                        @refresh-change="refreshChange"
                        @size-change="sizeChange"
                        @current-change="currentChange"
@@ -47,6 +49,9 @@
         name: 'datachinacity',
         data() {
             return {
+                search: {
+                  city: '',
+                },
                 searchForm: {},
                 tableData: [],
                 page: {
@@ -61,10 +66,12 @@
         computed: {
             ...mapGetters(['permissions']),
             permissionList() {
+              //权限没有问题
+              // console.log("我的权限：",this.permissions)
                 return {
-                    addBtn: this.vaildData(this.permissions.mjmap_datachinacity_add, false),
-                    delBtn: this.vaildData(this.permissions.mjmap_datachinacity_del, false),
-                    editBtn: this.vaildData(this.permissions.mjmap_datachinacity_edit, false)
+                    addBtn: this.vaildData(this.permissions.datas_datachinacity_add, false),
+                    delBtn: this.vaildData(this.permissions.datas_datachinacity_del, false),
+                    editBtn: this.vaildData(this.permissions.datas_datachinacity_edit, false)
                 };
             }
         },
@@ -120,11 +127,16 @@
             currentChange(current){
                 this.page.currentPage = current
             },
+            //执行搜索
             searchChange(form, done) {
                 this.searchForm = form
                 this.page.currentPage = 1
                 this.getList(this.page, form)
                 done()
+            },
+            //重置搜索
+            resetSearch(item){
+              //无需添加语句
             },
             refreshChange() {
                 this.getList(this.page)
