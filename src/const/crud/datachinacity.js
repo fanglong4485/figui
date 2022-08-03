@@ -1,11 +1,41 @@
+var baseUrl = 'https://cli.avuejs.com/api/area'
+
 export const tableOption ={
   "align": "center",
   "index": true,
   "border": true,
   searchSpan: 8,
   "column": [
-    {"prop": "pro", "type": "input", "label": "省份", "addDisplay": false, "editDisabled": false},
-    {"prop": "city", "type": "input", "label": "城市", "addDisplay": false, "editDisabled": false,search:true,},
+    {"prop": "pro","label": "省份", "type": "radio",  "addDisplay": false, "editDisabled": false,
+      props: {label: 'label',value: 'value'},
+      cascader: ['city'],
+      search: true,
+      dicUrl: `/admin/dict/type/province_code`,
+      dataType: 'string/number', // 注意配置后台返回value的类型，特别注意类型不对无法渲染
+      rules: [
+        {
+          required: true,
+          message: '请选择省份',
+          trigger: 'blur'
+        }
+      ]
+    },
+    {"prop": "city", "type": "select", "label": "城市", "addDisplay": false, "editDisabled": false,search:true,
+      props: {
+        label: 'label',
+        value: 'value'
+      },
+      //TODO 这个接口应该调用pig admin服务的字典接口。
+      dicUrl: `/datas/sadministrativedivisions/{{key}}`,
+      dataType: 'string/number', // 注意配置后台返回value的类型，特别注意类型不对无法渲染
+      rules: [
+        {
+          required: true,
+          message: '请选择城市',
+          trigger: 'blur'
+        }
+      ]
+    },
     {"prop": "nativeRelative", "type": "number", "label": "本土新增", "display": true, "controls": true, "addDisplay": false, "editDisabled": false},
     {"prop": "asymptomatic", "type": "number", "label": "累计无症状", "display": true, "controls": true, "addDisplay": false, "editDisabled": false},
     {"prop": "asymptomaticRelative", "type": "number", "label": "新增无症状", "display": true, "controls": true, "addDisplay": false, "editDisabled": false},

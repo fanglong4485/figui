@@ -63,7 +63,10 @@
                 tableOption: tableOption
             }
         },
-        computed: {
+      mounted() {
+        this.$nextTick(()=>this.$refs.crud.dicInit('cascader'))
+      },
+      computed: {
             ...mapGetters(['permissions']),
             permissionList() {
               //权限没有问题
