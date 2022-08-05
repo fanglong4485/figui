@@ -5,6 +5,7 @@ export const tableOption ={
   "index": true,
   "border": true,
   searchSpan: 8,
+  dateBtn:true,
   "column": [
     {"prop": "pro","label": "省份", "type": "radio",  "addDisplay": false, "editDisabled": false,
       props: {label: 'label',value: 'value'},
@@ -49,7 +50,10 @@ export const tableOption ={
     {"prop": "cityCode", "type": "number", "label": "城市代号", "display": true, "controls": true, "addDisplay": false, "editDisabled": false},
     {"prop": "administrativeCode", "type": "number", "label": "行政区编码", "display": true, "controls": true, "addDisplay": false, "editDisabled": false},
     {"prop": "updateTime", "type": "date", "label": "更新时间", "format": "yyyy-MM-dd", "display": true, "addDisplay": false, "valueFormat": "yyyy-MM-dd", "editDisabled": true},
-    {"prop": "createTime", "type": "date", "label": "创建时间", "format": "yyyy-MM-dd", "display": true, "addDisplay": false, "valueFormat": "yyyy-MM-dd", "editDisabled": true},
+    {
+      "prop": "createTime", "type": "date", "label": "创建时间", "format": "yyyy-MM-dd", "display": true, "addDisplay": false, "valueFormat": "yyyy-MM-dd", "editDisabled": true,
+
+    },
     {"prop": "createBy", "type": "input", "label": "创建人", "addDisplay": false, "editDisabled": true},
     {"prop": "updateBy", "type": "input", "label": "更新人", "addDisplay": false, "editDisabled": true}
   ],

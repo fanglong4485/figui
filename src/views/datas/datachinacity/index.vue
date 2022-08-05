@@ -27,6 +27,7 @@
                        :option="tableOption"
                        :search.sync="search"
                        @on-load="getList"
+                       @date-change="dateChange"
                        @search-change="searchChange"
                        @search-reset="resetSearch"
                        @refresh-change="refreshChange"
@@ -49,6 +50,9 @@
         name: 'datachinacity',
         data() {
             return {
+              startDate: '',
+              endDate: '',
+
                 search: {
                   city: '',
                 },
@@ -92,6 +96,16 @@
                     this.tableLoading=false
                 })
             },
+          dateChange(date){
+            //date 是一个数组，有两个元素，元素类型是字符串。
+            // this.$message.success(JSON.stringify(date));
+            if (date[0]){
+              this.searchForm.startDate = date[0]
+              this.searchForm.endDate = date[1]
+            }
+            console.log('查询参数=》',this.searchForm)
+
+          },
             rowDel: function (row, index) {
                 this.$confirm('是否确认删除ID为' + row.id, '提示', {
                     confirmButtonText: '确定',
@@ -132,9 +146,11 @@
             },
             //执行搜索
             searchChange(form, done) {
-                this.searchForm = form
+                this.searchForm.pro = form.pro
+              this.searchForm.city = form.city
+              console.log('form=>',form)
                 this.page.currentPage = 1
-                this.getList(this.page, form)
+                this.getList(this.page, this.searchForm)
                 done()
             },
             //重置搜索
